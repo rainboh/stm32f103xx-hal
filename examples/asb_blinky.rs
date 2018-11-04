@@ -22,6 +22,8 @@ use rt::ExceptionFrame;
 
 #[no_mangle]
 extern "C" {
+    fn halInitializeLayer () -> i32;
+    fn halSetInitState (InitState : i32);
     fn halPortInit() -> i32;
     // fn halPortFindDevice(id : u16) -> i32;
     fn halPortOpen(id : u16, mode : u16) -> i32;
@@ -31,7 +33,9 @@ extern "C" {
 #[entry]
 fn main() -> ! {
     
+    let mut result = unsafe { halSetInitState(1) };
     let mut result = unsafe { halPortInit() };
+    let mut result = unsafe { halSetInitState(2) };
     // let index = unsafe { halPortFindDevice(0x3200 | 10) };
     let handle_red = unsafe { halPortOpen( 0x3200 | 10, 2) };
     let handle_green = unsafe { halPortOpen( 0x3200 | 11, 2) };

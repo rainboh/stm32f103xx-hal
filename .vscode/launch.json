@@ -96,6 +96,7 @@
             "servertype": "openocd",
             "cwd": "${workspaceRoot}",
             // "executable": "/work/stm32f103xx-hal/target/thumbv7m-none-eabi/debug/examples/hello",
+            // "executable": "/work/stm32f103xx-hal/target/thumbv7m-none-eabi/debug/examples/blinky",
             "executable": "/work/stm32f103xx-hal/target/thumbv7m-none-eabi/debug/examples/asb_blinky",
             // "executable": "/work/stm32f103xx-hal/target/thumbv7m-none-eabi/debug/examples/itm",
             "name": "Debug (OpenOCD)",

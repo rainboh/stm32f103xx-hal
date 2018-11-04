@@ -82,6 +82,14 @@ rev = "6f12b77c1ffeae167989fe06e0d8b15978bd6d18"
 features = ["rt"]
 version = "0.10.0"
 
+[dependencies.hal]
+git = "ssh://git@lmsnus-s-gitlab.europe.leicams.com/slave/hal-stm32.git"
+branch = "rust"
+
+[dependencies.asb4_hal]
+git = "ssh://git@lmsnus-s-gitlab.europe.leicams.com/slave/asb4.git"
+branch = "hal-rs"
+
 [features]
 doc = []
 rt = ["stm32f103xx/rt"]
