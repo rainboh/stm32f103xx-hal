@@ -53,6 +53,44 @@
             ]
         },
         {
+            "type": "gdb",
+            "request": "launch",
+            "name": "Launch blinky",
+            "target": "./target/thumbv7m-none-eabi/debug/examples/blinky",
+            "cwd": "${workspaceRoot}",
+            "gdbpath": "/usr/bin/arm-none-eabi-gdb",
+            "debugger_args": [
+                "./target/thumbv7m-none-eabi/debug/examples/blinky"
+            ],
+            "autorun": [
+                "target remote localhost:3333",
+                // "target remote 192.168.178.88:3333",
+                // "monitor arm semihosting enable",
+                "break main",
+                "load",
+                "stepi",
+            ]
+        },
+        {
+            "type": "gdb",
+            "request": "launch",
+            "name": "Launch asb_blinky",
+            "target": "./target/thumbv7m-none-eabi/debug/examples/asb_blinky",
+            "cwd": "${workspaceRoot}",
+            "gdbpath": "/usr/bin/arm-none-eabi-gdb",
+            "debugger_args": [
+                "./target/thumbv7m-none-eabi/debug/examples/asb_blinky"
+            ],
+            "autorun": [
+                "target remote localhost:3333",
+                // "target remote 192.168.178.88:3333",
+                // "monitor arm semihosting enable",
+                "break main",
+                "load",
+                "stepi",
+            ]
+        },
+        {
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "openocd",

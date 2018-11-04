@@ -20,8 +20,6 @@ use hal::stm32f103xx;
 use hal::timer::Timer;
 use rt::ExceptionFrame;
 
-entry!(main);
-
 #[no_mangle]
 extern "C" {
     fn halPortInit() -> i32;
@@ -30,6 +28,7 @@ extern "C" {
     fn halPortWrite(handle: i32, value: u16) -> i32;
 }
 
+#[entry]
 fn main() -> ! {
     
     let mut result = unsafe { halPortInit() };
@@ -80,17 +79,16 @@ fn main() -> ! {
     }
 }
 
-exception!(HardFault, hard_fault);
-
-fn hard_fault(ef: &ExceptionFrame) -> ! {
+#[exception]
+fn HardFault(ef: &ExceptionFrame) -> ! {
     panic!("{:#?}", ef);
 }
 
-exception!(*, default_handler);
-
-fn default_handler(irqn: i16) {
+#[exception]
+fn DefaultHandler(irqn: i16) {
     panic!("Unhandled exception (IRQn = {})", irqn);
 }
+
 
 // https://github.com/japaric/utest
 
@@ -138,11 +136,11 @@ use cty::c_void;
 #[no_mangle]
 pub unsafe extern "C" fn _sbrk(nbytes: isize) -> *mut c_void {
     extern "C" {
-        static mut _sheap: u8;
+        static mut __sheap: u8;
         static mut _eheap: u8;
     }
 
-    static mut HEAP: *mut u8 = unsafe { &_sheap as *const u8 as *mut u8 };
+    static mut HEAP: *mut u8 = unsafe { &__sheap as *const u8 as *mut u8 };
 
     let eheap = &mut _eheap as *mut u8;
     let base = HEAP;

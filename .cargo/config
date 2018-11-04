@@ -7,9 +7,11 @@ rustflags = [
   # "-C", "link-arg=-L/work/stm32f103xx-hal/bin",
   # "-C", "link-arg=hal",
   "-C", "link-arg=/work/stm32f103xx-hal/bin/hal.a",
-  "-C", "link-arg=/work/stm32f103xx-hal/bin/libc.a",
+  # "-C", "link-arg=/work/stm32f103xx-hal/bin/libc.a",
   # "-C", "link-arg=/work/stm32f103xx-hal/bin/libnosys.a",
   # "-C", "link-arg=/work/stm32f103xx-hal/bin/libc_nano.a",
+
+  "-C", "link-arg=/usr/lib/arm-none-eabi/newlib/thumb/libc_nano.a",
 
   # if you run into problems with LLD switch to the GNU linker by commenting out
   # this line
